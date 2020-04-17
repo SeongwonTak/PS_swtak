@@ -1,6 +1,5 @@
 # BOJ_2178 미로탐색_이해하기
-# https://www.acmicpc.net/problem/2178
-# https://daimhada.tistory.com/82를 보고 이해하는 과정
+# https://hongku.tistory.com/276 를 보고 이해하는 과정
 import sys
 
 def solve(mazes, x, y):
