@@ -27,7 +27,13 @@ def main():
         people_exit[pointer] = 1
         people_rid.append(people_num[pointer])
 
-    print(people_rid)
+    print("<", end="")
+    for i in range(0, num):
+        if i == (num - 1):
+            print(people_rid[i], end=">")
+        else:
+            print(people_rid[i], end=", ")
+
 
 if __name__ == "__main__":
     main()
