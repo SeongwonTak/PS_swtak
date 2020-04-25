@@ -1,17 +1,19 @@
 # 2178_응용
 # BOJ_7576 토마토
 # 최적화를 어떻게 해야 할지 모르겠다
+import queue
+
 def solve(tomatoes, n, m):
     way_x = [-1, 1, 0, 0]  # 좌 / 우 / 상 / 하 x값 변화
     way_y = [0, 0, -1, 1]  # 좌 / 우 / 상 / 하 y값 변화
     visited = [[0] * m for _ in range(n)]
-    next_block = []
+    next_block = queue.Queue()
     end_judge = 1
     # 첫 시작점들은 1인 좌표들에 대해서 넣어야 한다.
     for i in range(0, n):
         for j in range(0, m):
             if tomatoes[i][j] == 1:
-                next_block.append([i, j])
+                next_block.put((i, j))
             elif tomatoes[i][j] == 0:
                 end_judge = 0
 
@@ -19,10 +21,10 @@ def solve(tomatoes, n, m):
         return 0
 
     else:  # 이제 돌아줘야 함
-        day_val=0
+        day_val = 0
         visited[0][0] = 0
         while next_block:  # 더 꺼낼게 없을 때 까지
-            x, y = next_block.pop(0)  # 꺼낼 거의 첫번째 위치
+            (x, y) = next_block.get()  # 꺼낼 거의 첫번째 위치
 
             for i in range(4):
                 # 일단 4 방향중 하나를 들어가자
@@ -37,7 +39,7 @@ def solve(tomatoes, n, m):
                         tomatoes[new_x][new_y] = 1
                         visited[new_x][new_y] = visited[x][y] + 1
                         day_val = visited[new_x][new_y]
-                        next_block.append((new_x, new_y))
+                        next_block.put((new_x, new_y))
 
         # 안 된 칸이 있나 체크
         end_judge_t = 1
