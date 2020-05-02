@@ -1,5 +1,5 @@
 # RGB 거리
-# DP문제!
+# DP문제!!
 def main():
     home = int(input())
     red = [0] * home
